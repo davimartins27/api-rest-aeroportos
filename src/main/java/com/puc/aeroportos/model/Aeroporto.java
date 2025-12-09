@@ -1,4 +1,4 @@
-package com.puc.aeroportos.domain;
+package com.puc.aeroportos.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

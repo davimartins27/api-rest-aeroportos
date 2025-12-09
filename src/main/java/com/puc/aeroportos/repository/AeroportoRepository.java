@@ -1,6 +1,6 @@
 package com.puc.aeroportos.repository;
 
-import com.puc.aeroportos.domain.Aeroporto;
+import com.puc.aeroportos.model.Aeroporto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

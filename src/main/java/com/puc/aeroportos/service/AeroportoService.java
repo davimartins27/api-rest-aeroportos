@@ -1,6 +1,6 @@
-package com.puc.aeroportos.services;
+package com.puc.aeroportos.service;
 
-import com.puc.aeroportos.domain.Aeroporto;
+import com.puc.aeroportos.model.Aeroporto;
 import com.puc.aeroportos.repository.AeroportoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
