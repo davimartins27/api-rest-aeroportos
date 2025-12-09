@@ -1,33 +1,45 @@
 package com.puc.aeroportos.service;
 
 import com.puc.aeroportos.exception.AeroportoNaoEncontradoException;
+import com.puc.aeroportos.repository.AeroportoRepository;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
 class AeroportoServiceTest {
 
-    private final AeroportoService service = new AeroportoService();
+    @Mock
+    private AeroportoRepository repository;
+
+    @InjectMocks
+    private AeroportoService service;
+
+
 
     @Test
     void deveConverterPesParaMetrosCorretamente() {
-        Double pes = 1000.0;
-
-        Double metros = service.converterPesParaMetros(pes);
-
-        assertEquals(304.8, metros);
+        Double resultado = service.converterPesParaMetros(1000.0);
+        assertEquals(304.8, resultado);
     }
 
     @Test
     void deveRetornarBrParaBrasil() {
-        String pais = "Brazil";
-
-        String iso = service.obterIsoPais(pais);
-
+        String iso = service.obterIsoPais("Brazil");
         assertEquals("BR", iso);
     }
 
     @Test
     void deveLancarErroQuandoNaoEncontrarAeroporto() {
+        when(repository.findByCodigoIata("XYZ")).thenReturn(Optional.empty());
+
         assertThrows(AeroportoNaoEncontradoException.class, () -> service.buscarPorIata("XYZ"));
     }
 }
