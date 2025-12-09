@@ -25,7 +25,7 @@ public class Aeroporto {
     @Column(nullable = false)
     private String cidade;
 
-    @Column(length = 2, nullable = false)
+    @Column(length = 100, nullable = false)
     private String codigoPaisIso;
 
     @Column(nullable = false)

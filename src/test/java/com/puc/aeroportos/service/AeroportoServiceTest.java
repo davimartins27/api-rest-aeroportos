@@ -1,6 +1,6 @@
 package com.puc.aeroportos.service;
 
-import com.puc.aeroportos.service.AeroportoService;
+import com.puc.aeroportos.exception.AeroportoNaoEncontradoException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,5 +24,10 @@ class AeroportoServiceTest {
         String iso = service.obterIsoPais(pais);
 
         assertEquals("BR", iso);
+    }
+
+    @Test
+    void deveLancarErroQuandoNaoEncontrarAeroporto() {
+        assertThrows(AeroportoNaoEncontradoException.class, () -> service.buscarPorIata("XYZ"));
     }
 }

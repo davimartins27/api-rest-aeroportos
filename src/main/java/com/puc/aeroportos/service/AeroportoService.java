@@ -1,11 +1,10 @@
 package com.puc.aeroportos.service;
 
+import com.puc.aeroportos.exception.AeroportoNaoEncontradoException;
 import com.puc.aeroportos.model.Aeroporto;
 import com.puc.aeroportos.repository.AeroportoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class AeroportoService {
 
     public Aeroporto buscarPorIata(String iata) {
         return repository.findByCodigoIata(iata)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Aeroporto não encontrado"));
+                .orElseThrow(() -> new AeroportoNaoEncontradoException(iata));
     }
 
     public Aeroporto salvar(Aeroporto aeroporto) {
